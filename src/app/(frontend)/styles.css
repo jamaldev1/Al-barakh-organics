@@ -1,164 +1,173 @@
-:root {
-  --font-mono: 'Roboto Mono', monospace;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@400;500;600;700;800&family=Dynalight&display=swap');
+@import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-}
 
-html {
-  font-size: 18px;
-  line-height: 32px;
+@theme {
+  /* Agrow-inspired Dark Green + Gold palette */
+  --color-brand-50: #f0f7f0;
+  --color-brand-100: #dceedd;
+  --color-brand-200: #b4d9b6;
+  --color-brand-300: #7bbf7e;
+  --color-brand-400: #4a9c4e;
+  --color-brand-500: #2d7d31;
+  --color-brand-600: #1e5f22;
+  --color-brand-700: #184a1b;
+  --color-brand-800: #123814;
+  --color-brand-900: #0c260d;
 
-  background: rgb(0, 0, 0);
-  -webkit-font-smoothing: antialiased;
-}
+  /* Gold / Yellow accent */
+  --color-gold-50: #fef9e7;
+  --color-gold-100: #fdf0c4;
+  --color-gold-200: #fbe49d;
+  --color-gold-300: #f7d36d;
+  --color-gold-400: #f5c518;
+  --color-gold-500: #e2a33f;
+  --color-gold-600: #c99a2e;
+  --color-gold-700: #a87c1d;
+  --color-gold-800: #8a6318;
+  --color-gold-900: #6b4d13;
 
-html,
-body,
-#app {
-  height: 100%;
+  /* Cream background */
+  --color-cream-50: #fdfcf8;
+  --color-cream-100: #faf7ef;
+  --color-cream-200: #f5f0e1;
+
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Roboto Slab', Georgia, serif;
+  --font-cursive: 'Dynalight', cursive;
 }
 
 body {
-  font-family: system-ui;
-  font-size: 18px;
-  line-height: 32px;
-
-  margin: 0;
-  color: rgb(1000, 1000, 1000);
-
-  @media (max-width: 1024px) {
-    font-size: 15px;
-    line-height: 24px;
-  }
+  background-color: #ffffff;
+  color: #2d2d2d;
+  font-family: var(--font-sans);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 
-h1 {
-  margin: 40px 0;
-  font-size: 64px;
-  line-height: 70px;
-  font-weight: bold;
-
-  @media (max-width: 1024px) {
-    margin: 24px 0;
-    font-size: 42px;
-    line-height: 42px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 38px;
-    line-height: 38px;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 32px;
-    line-height: 32px;
-  }
+.font-cursive {
+  font-family: var(--font-cursive);
 }
 
-p {
-  margin: 24px 0;
-
-  @media (max-width: 1024px) {
-    margin: calc(var(--base) * 0.75) 0;
-  }
+/* Agrow-style cursive eyebrow */
+.eyebrow {
+  font-family: var(--font-cursive);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--color-gold-400);
+  line-height: 1.2;
 }
 
-a {
-  color: currentColor;
-
-  &:focus {
-    opacity: 0.8;
-    outline: none;
-  }
-
-  &:active {
-    opacity: 0.7;
-    outline: none;
-  }
-}
-
-svg {
-  vertical-align: middle;
-}
-
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Yellow pill button style */
+.btn-primary {
+  display: inline-flex;
   align-items: center;
-  height: 100vh;
-  padding: 45px;
-  max-width: 1024px;
-  margin: 0 auto;
-  overflow: hidden;
+  gap: 0.5rem;
+  background-color: var(--color-gold-400);
+  color: var(--color-brand-900);
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: var(--color-gold-500);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 197, 24, 0.3);
+}
 
-  @media (max-width: 400px) {
-    padding: 24px;
-  }
+/* Dark green button */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-brand-700);
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-dark:hover {
+  background-color: var(--color-brand-600);
+  transform: translateY(-1px);
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
+/* Agrow-style section title pattern */
+.section-subtitle {
+  font-family: var(--font-cursive);
+  font-size: 1.5rem;
+  color: var(--color-gold-400);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-brand-800);
+  line-height: 1.15;
+}
 
-    h1 {
-      text-align: center;
-    }
-  }
+/* Card hover effect */
+.agrow-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+.agrow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
 
-  .links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+/* Service card with cream background */
+.service-card {
+  background: var(--color-cream-100);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-cream-200);
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
 
-    a {
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-    }
+/* Dark green icon container */
+.icon-box {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  background: var(--color-brand-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold-400);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
 
-    .admin {
-      color: rgb(0, 0, 0);
-      background: rgb(1000, 1000, 1000);
-      border: 1px solid rgb(0, 0, 0);
-    }
+/* Yellow highlight card */
+.highlight-card {
+  background: var(--color-gold-400);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  color: var(--color-brand-900);
+}
 
-    .docs {
-      color: rgb(1000, 1000, 1000);
-      background: rgb(0, 0, 0);
-      border: 1px solid rgb(1000, 1000, 1000);
-    }
-  }
-
-  .footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .codeLink {
-      text-decoration: none;
-      padding: 0 0.5rem;
-      background: rgb(60, 60, 60);
-      border-radius: 4px;
-    }
-  }
+/* Smooth scrollbar */
+html {
+  scroll-behavior: smooth;
 }

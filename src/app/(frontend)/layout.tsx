@@ -1,9 +1,20 @@
 import React from 'react'
 import './styles.css'
+import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Al Barakh Organics | Organic Agriculture Solutions for Pakistan',
+  description:
+    'Al Barakh Organics provides quality vermicompost, red wigglers, farmer training and practical sustainable agriculture solutions across Pakistan. Healthier soil, better future.',
+  keywords:
+    'vermicompost, organic fertilizer, red wigglers, sustainable agriculture Pakistan, farmer training, organic farming, soil health, Eisenia fetida, organic waste management',
+  openGraph: {
+    title: 'Al Barakh Organics | Organic Agriculture Solutions for Pakistan',
+    description:
+      'Quality vermicompost, red wigglers, farmer training and practical sustainable agriculture solutions for farmers, growers, nurseries and institutions across Pakistan.',
+    type: 'website',
+  },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -13,6 +24,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <main>{children}</main>
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )
