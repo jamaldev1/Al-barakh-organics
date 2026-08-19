@@ -15,6 +15,10 @@ export const metadata = {
       'Quality vermicompost, red wigglers, farmer training and practical sustainable agriculture solutions for farmers, growers, nurseries and institutions across Pakistan.',
     type: 'website',
   },
+  icons: {
+    icon: '/images/logo.jpg',
+    apple: '/images/logo.jpg',
+  },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

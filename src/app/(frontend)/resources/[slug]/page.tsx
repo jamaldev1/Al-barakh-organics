@@ -15,7 +15,7 @@ export default async function ResourcePost({ params }: { params: Params }) {
   const payload = await getPayload({ config })
 
   const { docs } = await payload.find({
-    collection: 'posts',
+    collection: 'blog-posts',
     where: { slug: { equals: slug }, status: { equals: 'published' } },
     limit: 1,
   })
@@ -43,7 +43,7 @@ export default async function ResourcePost({ params }: { params: Params }) {
                 {post.title}
               </h1>
               <div className="mt-8 flex items-center justify-center gap-4 text-white/60 text-sm">
-                <span>{new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <span>{new Date(post.publishedDate || post.updatedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                 <span>•</span>
                 <span>Al Barakh Organics</span>
               </div>
@@ -95,7 +95,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
-    collection: 'posts',
+    collection: 'blog-posts',
     where: { slug: { equals: slug }, status: { equals: 'published' } },
     limit: 1,
   })

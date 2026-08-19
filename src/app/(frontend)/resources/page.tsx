@@ -3,6 +3,7 @@ import config from '../../../payload.config'
 import Header from '@/components/Header'
 import FadeIn from '@/components/FadeIn'
 import Link from 'next/link'
+import CTABanner from '@/components/CTABanner'
 
 export const revalidate = 0
 
@@ -14,9 +15,9 @@ export const metadata = {
 export default async function ResourcesPage() {
   const payload = await getPayload({ config })
   const { docs: posts } = await payload.find({
-    collection: 'posts',
+    collection: 'blog-posts',
     where: { status: { equals: 'published' } },
-    sort: '-publishedAt',
+    sort: '-publishedDate',
   })
 
   return (
@@ -97,15 +98,15 @@ export default async function ResourcesPage() {
       </section>
 
       {/* Suggest Topic CTA */}
-      <section className="bg-brand-800 px-6 py-20 text-center">
-        <FadeIn>
-          <p className="font-cursive text-3xl text-gold-400">Can&apos;t Find What You Need?</p>
-          <h2 className="font-display text-3xl font-bold text-white mt-3">Suggest a Training Topic</h2>
-          <div className="mt-8">
-            <a href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer" className="btn-primary text-base">💬 Talk to Us on WhatsApp →</a>
-          </div>
-        </FadeIn>
-      </section>
+      <CTABanner
+        eyebrow="Can't Find What You Need?"
+        title="Looking for a Specific Farming Guide?"
+        description="Our agronomy team regularly publishes free field guides, worm-care manuals, and soil restoration whitepapers. Ask us for customized resources."
+        primaryBtnText="Suggest a Topic →"
+        primaryBtnHref="/contact"
+        secondaryBtnText="💬 Ask on WhatsApp"
+        secondaryBtnHref="https://wa.me/923000000000?text=Hi,%20I%20have%20a%20question%20about%20organic%20farming%20resources."
+      />
     </>
   )
 }

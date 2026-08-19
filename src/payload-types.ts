@@ -76,6 +76,7 @@ export interface Config {
     'blog-posts': BlogPost;
     contacts: Contact;
     testimonials: Testimonial;
+    gallery: Gallery;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     'blog-posts': BlogPostsSelect<false> | BlogPostsSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -144,8 +146,6 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
   sessions?:
     | {
         id: string;
@@ -392,6 +392,41 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: number;
+  title: string;
+  /**
+   * Select whether this item is a video or a photo
+   */
+  mediaType: 'video' | 'photo';
+  /**
+   * Upload the photo or video file
+   */
+  media: number | Media;
+  /**
+   * Optional image cover thumbnail (.jpg, .png, .webp) for videos. Leave blank to use the video directly.
+   */
+  thumbnail?: (number | null) | Media;
+  /**
+   * Short description or takeaway about this farm activity
+   */
+  caption?: string | null;
+  /**
+   * Highlight as a larger/featured card in the farm tour gallery
+   */
+  featured?: boolean | null;
+  /**
+   * Sort order (lower numbers appear first)
+   */
+  order?: number | null;
+  status: 'published' | 'draft';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -449,6 +484,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'testimonials';
         value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'gallery';
+        value: number | Gallery;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -504,8 +543,6 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
   sessions?:
     | T
     | {
@@ -668,6 +705,22 @@ export interface TestimonialsSelect<T extends boolean = true> {
   quote?: T;
   rating?: T;
   photo?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  title?: T;
+  mediaType?: T;
+  media?: T;
+  thumbnail?: T;
+  caption?: T;
+  featured?: T;
+  order?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;

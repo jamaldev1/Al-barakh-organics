@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 
 export default function TrainingRegistrationForm({
-  sessions,
+  sessions = [],
 }: {
-  sessions: { id: string; title: string }[]
+  sessions?: { id: string; title: string }[]
 }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -111,11 +111,11 @@ export default function TrainingRegistrationForm({
       <motion.button
         type="submit"
         disabled={loading}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full bg-brand-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-brand-700 transition disabled:opacity-50"
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        className="w-full bg-gold-400 hover:bg-gold-500 text-brand-950 px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 text-base cursor-pointer mt-2"
       >
-        {loading ? 'Registering...' : 'Register Now'}
+        {loading ? 'Submitting Registration...' : 'Register for Training Session →'}
       </motion.button>
     </form>
   )
